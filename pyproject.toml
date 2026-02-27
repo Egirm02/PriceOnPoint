@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weeklyad-extractor"
+version = "0.1.0"
+description = "Safeway weekly ad and sale prices catalog extractor"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "playwright>=1.50.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+  "e2e: end-to-end tests requiring browser and network",
+]
+addopts = "-q"
+
+[project.scripts]
+weeklyad = "weeklyad.cli:main"
